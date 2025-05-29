@@ -453,3 +453,67 @@ a.btn:focus {
     .institution, .duration, .contact-info { font-size: 0.85rem; }
     section, #certifications { padding: 2em 1em; }
 }
+/* Sticky nav shadow & higher z-index */
+nav {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+    z-index: 2000;
+}
+
+/* Larger nav tap targets on mobile */
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+        gap: 24px;
+    }
+    nav ul li a {
+        font-size: 1.1em;
+        padding: 14px 0;
+        min-width: 80vw;
+        display: block;
+    }
+    .cta-btn, .btn, .btn-link {
+        font-size: 1.1em;
+        padding: 18px 0;
+        min-width: 90vw;
+    }
+}
+
+/* Tap/click feedback */
+.btn:active,
+.cta-btn:active,
+.btn-link:active,
+.card:active,
+.cert-card:active {
+    filter: brightness(0.92);
+    transform: scale(0.97);
+}
+
+/* Extra space between buttons and links on mobile */
+@media (max-width: 600px) {
+    .btn, .cta-btn, .btn-link {
+        margin-bottom: 16px;
+    }
+    .skills-list li,
+    .contact-list li {
+        margin-bottom: 18px;
+    }
+}
+
+/* Make cards more readable on mobile */
+@media (max-width: 480px) {
+    .card, .cert-card, section.project, section {
+        border-radius: 14px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.24);
+    }
+    body {
+        font-size: 1.1em;
+    }
+}
+
+/* Hide desktop nav, show hamburger on mobile (assuming JS toggles it) */
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+    }
+    .hamburger-menu {
+        display: block;
