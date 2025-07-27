@@ -1,0 +1,1821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Khushi | Data Analyst Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Modern Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1a1a1a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #6366f1, #8b5cf6);
+      border-radius: 4px;
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Modern Hero Section */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+      animation: heroGlow 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes heroGlow {
+      0% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    .hero-content {
+      text-align: center;
+      z-index: 2;
+      position: relative;
+      max-width: 800px;
+      padding: 0 2rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 3s ease-in-out infinite;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 4vw, 1.5rem);
+      color: #a1a1aa;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      color: #6366f1;
+      background: rgba(99, 102, 241, 0.1);
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      display: inline-block;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-link:hover {
+      background: rgba(99, 102, 241, 0.2);
+      border-color: #6366f1;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+    }
+
+    .hero-link img {
+      width: 20px;
+      height: 20px;
+      filter: invert(1);
+    }
+
+    /* Modern Navigation */
+    .navbar {
+      position: fixed;
+  top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 0;
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(10, 10, 10, 0.95);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+  display: flex;
+      justify-content: space-between;
+  align-items: center;
+    }
+
+    .nav-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+  display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #a1a1aa;
+  text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+  position: relative;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .nav-links a::after {
+  content: '';
+  position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Section Styles */
+    .section {
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    .section-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+      text-align: center;
+      margin-bottom: 4rem;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* About Section */
+    .about-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 3rem;
+      backdrop-filter: blur(20px);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .about-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .about-avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #6366f1;
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+    }
+
+    .about-content h3 {
+      font-size: 1.5rem;
+      color: #6366f1;
+      margin-bottom: 1rem;
+    }
+
+    .about-content p {
+      color: #a1a1aa;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      backdrop-filter: blur(20px);
+      transition: all 0.3s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(99, 102, 241, 0.15);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .skill-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #6366f1;
+      margin-bottom: 1rem;
+    }
+
+    .skill-list {
+      list-style: none;
+      color: #a1a1aa;
+    }
+
+    .skill-list li {
+      margin-bottom: 0.5rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .skill-list li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: #6366f1;
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      backdrop-filter: blur(20px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-duration {
+      color: #6366f1;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-description {
+      color: #a1a1aa;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .project-tech {
+      color: #8b5cf6;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-link {
+      color: #6366f1;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .project-link:hover {
+      color: #8b5cf6;
+    }
+
+    /* Experience Section */
+    .experience-timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .experience-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, #6366f1, #8b5cf6);
+    }
+
+    .experience-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 2rem;
+    }
+
+    .experience-item::before {
+      content: '';
+      position: absolute;
+      left: -0.5rem;
+      top: 0.5rem;
+      width: 1rem;
+      height: 1rem;
+      background: #6366f1;
+      border-radius: 50%;
+      border: 3px solid #0a0a0a;
+    }
+
+    .experience-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      backdrop-filter: blur(20px);
+      transition: all 0.3s ease;
+    }
+
+    .experience-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(99, 102, 241, 0.15);
+    }
+
+    .experience-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #6366f1;
+      margin-bottom: 0.5rem;
+    }
+
+    .experience-company {
+      color: #8b5cf6;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .experience-duration {
+      color: #a1a1aa;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .experience-description {
+      color: #a1a1aa;
+      line-height: 1.6;
+    }
+
+    /* Education Section */
+    .education-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 3rem;
+      backdrop-filter: blur(20px);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .education-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+    }
+
+    .education-degree {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #6366f1;
+      margin-bottom: 0.5rem;
+    }
+
+    .education-school {
+      font-size: 1.1rem;
+      color: #8b5cf6;
+      margin-bottom: 0.5rem;
+    }
+
+    .education-duration {
+      color: #a1a1aa;
+      margin-bottom: 0.5rem;
+    }
+
+    .education-gpa {
+      color: #6366f1;
+      font-weight: 600;
+    }
+
+    /* Certifications Section */
+    .certifications-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .certification-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      backdrop-filter: blur(20px);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .certification-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(99, 102, 241, 0.15);
+    }
+
+    .certification-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      border: 2px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .certification-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #6366f1;
+      margin-bottom: 0.5rem;
+    }
+
+    .certification-issuer {
+      color: #a1a1aa;
+      font-size: 0.9rem;
+    }
+
+    /* Research Work Section */
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .research-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      backdrop-filter: blur(20px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .research-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .research-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .research-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+    }
+
+    .research-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .research-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    .research-duration {
+      color: #6366f1;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .research-description {
+      color: #a1a1aa;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .research-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .topic-tag {
+      background: rgba(99, 102, 241, 0.1);
+      color: #6366f1;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .research-outcomes {
+      color: #a1a1aa;
+      font-size: 0.9rem;
+    }
+
+    .research-outcomes ul {
+      margin-top: 0.5rem;
+      padding-left: 1.5rem;
+    }
+
+    .research-outcomes li {
+      margin-bottom: 0.25rem;
+    }
+
+    /* Articles Section */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .article-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      backdrop-filter: blur(20px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .article-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .article-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+    }
+
+    .article-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .article-platform {
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      color: #ffffff;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .article-date {
+      color: #a1a1aa;
+      font-size: 0.9rem;
+    }
+
+    .article-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+
+    .article-excerpt {
+      color: #a1a1aa;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .article-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .article-link {
+      color: #8b5cf6;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      display: inline-block;
+    }
+
+    .article-link:hover {
+      color: #ec4899;
+    }
+
+    /* Filter Buttons */
+    .filter-container {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #a1a1aa;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .filter-btn:hover {
+      background: rgba(99, 102, 241, 0.1);
+      border-color: #6366f1;
+      color: #ffffff;
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #ffffff;
+      border-color: #6366f1;
+    }
+
+    /* Expand Buttons */
+    .expand-btn {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #ffffff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+      width: 100%;
+    }
+
+    .expand-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+    }
+
+    /* Research Details */
+    .research-details {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #a1a1aa;
+    }
+
+    .research-details h4 {
+      color: #6366f1;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .research-details p {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* Article Details */
+    .article-details {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #a1a1aa;
+    }
+
+    .article-details h4 {
+      color: #8b5cf6;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .article-details ul {
+      margin-top: 0.5rem;
+      padding-left: 1.5rem;
+    }
+
+    .article-details li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .about-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .projects-grid,
+      .skills-grid,
+      .certifications-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 4rem 0;
+      }
+
+      .section-container {
+        padding: 0 1rem;
+      }
+
+      .filter-container {
+        gap: 0.5rem;
+      }
+      
+      .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Contact Section */
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #6366f1;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p {
+      color: #a1a1aa;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .contact-details {
+      margin-bottom: 2rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      color: #a1a1aa;
+    }
+
+    .contact-socials {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: rgba(99, 102, 241, 0.2);
+      border-color: #6366f1;
+      transform: translateY(-2px);
+    }
+
+    .social-link img {
+      width: 24px;
+      height: 24px;
+      filter: invert(1);
+    }
+
+    .contact-form {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      backdrop-filter: blur(20px);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: #ffffff;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #ffffff;
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+    }
+
+    /* Resume Section */
+    .resume-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 3rem;
+      backdrop-filter: blur(20px);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .resume-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+    }
+
+    .resume-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #6366f1;
+      margin-bottom: 1rem;
+    }
+
+    .resume-description {
+      color: #a1a1aa;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .resume-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .resume-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(99, 102, 241, 0.3);
+    }
+
+    /* Footer */
+    .footer {
+      background: rgba(255, 255, 255, 0.02);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-text {
+      color: #a1a1aa;
+      margin-bottom: 1rem;
+    }
+
+    .footer-heart {
+      color: #ec4899;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    /* Intersection Observer for animations */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">Khushi Malik</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#researchwork">Research</a></li>
+        <li><a href="#articles">Articles</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#resume">Resume</a></li>
+      </ul>
+  </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Khushi Malik</h1>
+      <p class="hero-subtitle">Mathematics Undergraduate at Kirori Mal College, University of Delhi</p>
+      <div class="hero-tagline">Data Science & AI Enthusiast — Transforming data into actionable insights</div>
+      <div class="hero-links">
+        <a href="mailto:khushimalik511263@gmail.com" class="hero-link">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Email">
+          Email
+        </a>
+        <a href="https://github.com/khushimalik3122" class="hero-link">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub">
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/khushi-malik-6b972b280/" class="hero-link">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn">
+          LinkedIn
+        </a>
+        <a href="https://khushimalik511263.medium.com/" class="hero-link">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/medium.svg" alt="Medium">
+          Medium
+        </a>
+        <a href="https://huggingface.co/khushimalik3122" class="hero-link">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/huggingface.svg" alt="Hugging Face">
+          Hugging Face
+        </a>
+          </div>
+            </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="section-container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-card animate-on-scroll">
+        <img src="khushimalik.png" alt="Khushi Malik" class="about-avatar">
+        <div class="about-content">
+          <h3>Hello! I'm Khushi Malik</h3>
+          <p>I'm Khushi Malik, a Mathematics undergrad at Kirori Mal College, University of Delhi — passionate about fusing AI, data, and deep research to craft smart, human-centered solutions for real-world impact.</p>
+          <p><strong>AI/ML Researcher</strong> focused on LLMs & NLP</p>
+          <p><strong>Data Analyst</strong> skilled in Python, SQL, Power BI</p>
+          <p><strong>Future EdTech Entrepreneur</strong> with a vision for inclusive innovation</p>
+          <p><strong>Researcher</strong> at the intersection of Math, Machine Learning, and Meaningful Insights</p>
+        </div>
+            </div>
+          </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section">
+    <div class="section-container">
+      <h2 class="section-title">Skills & Technologies</h2>
+      <div class="skills-grid">
+        <div class="skill-card animate-on-scroll">
+          <h3 class="skill-title">Data Analysis & Visualization</h3>
+          <ul class="skill-list">
+            <li>Python (Pandas, NumPy, Matplotlib, Seaborn)</li>
+            <li>Power BI</li>
+            <li>Excel</li>
+            <li>Jupyter Notebook</li>
+            <li>SQL & MySQL</li>
+            <li>Data Preprocessing & ETL Pipelines</li>
+            <li>Google Colab</li>
+            <li>Streamlit (ML Applications)</li>
+          </ul>
+      </div>
+        <div class="skill-card animate-on-scroll">
+          <h3 class="skill-title">Artificial Intelligence & Machine Learning</h3>
+          <ul class="skill-list">
+            <li>scikit-learn</li>
+            <li>TensorFlow</li>
+            <li>Hugging Face Transformers</li>
+            <li>OpenAI API</li>
+            <li>RAG Systems (Retrieval-Augmented Generation)</li>
+            <li>LangChain & LLM Workflows</li>
+            <li>Fine-tuning Language Models</li>
+            <li>Code Embeddings (BAAI/bge-code-v1)</li>
+          </ul>
+          </div>
+        <div class="skill-card animate-on-scroll">
+          <h3 class="skill-title">Research & Academic Foundations</h3>
+          <ul class="skill-list">
+            <li>Linear Algebra</li>
+            <li>Probability</li>
+            <li>Calculus</li>
+            <li>Abstract Algebra</li>
+          </ul>
+            </div>
+        <div class="skill-card animate-on-scroll">
+          <h3 class="skill-title">Communication & Leadership</h3>
+          <ul class="skill-list">
+            <li>Presentations</li>
+            <li>Public speaking</li>
+            <li>Team leadership</li>
+            <li>Critical thinking</li>
+            <li>NCC experience</li>
+          </ul>
+            </div>
+        <div class="skill-card animate-on-scroll">
+          <h3 class="skill-title">Development & Collaboration Tools</h3>
+          <ul class="skill-list">
+            <li>Git & GitHub (Version Control)</li>
+            <li>VS Code API (Extension Development)</li>
+            <li>Google Colab & Jupyter</li>
+            <li>Google Workspace</li>
+            <li>Zoom & Slack</li>
+          </ul>
+            </div>
+          </div>
+        </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <div class="section-container">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card animate-on-scroll">
+          <h3 class="project-title">AI Coder Pro</h3>
+          <div class="project-duration">VS Code Extension</div>
+          <p class="project-description">Modern VS Code extension with Perplexity-inspired chat UI, advanced RAG system, and smart agents for code assistance, file upload, and automated code review.</p>
+          <div class="project-tech"><strong>Tech:</strong> TypeScript, VS Code API, Together AI, RAG System</div>
+          <a href="https://github.com/khushimalik3122/ai-coder-pro" class="project-link" target="_blank">View Project →</a>
+        </div>
+        <div class="project-card animate-on-scroll">
+          <h3 class="project-title">Medical AI Assistance</h3>
+          <div class="project-duration">Healthcare AI Project</div>
+          <p class="project-description">AI-powered medical assistance system designed to provide intelligent healthcare support and medical information processing.</p>
+          <div class="project-tech"><strong>Tech:</strong> AI/ML, Healthcare Technology, Medical Data Processing</div>
+          <a href="https://github.com/khushimalik3122/Medical-AI-Assistance" class="project-link" target="_blank">View Project →</a>
+        </div>
+        <div class="project-card animate-on-scroll">
+          <h3 class="project-title">House Price Predictor</h3>
+          <div class="project-duration">ML Project</div>
+          <p class="project-description">ML model to predict Bengaluru house prices. EDA, feature engineering, model tuning done with Python.</p>
+          <div class="project-tech"><strong>Tech:</strong> Python, Scikit-learn, Pandas, Matplotlib</div>
+          <a href="https://github.com/khushimalik3122/house-price-predictor-19" class="project-link" target="_blank">View Project →</a>
+        </div>
+        <div class="project-card animate-on-scroll">
+          <h3 class="project-title">Coffee Shop Sales Dashboard</h3>
+          <div class="project-duration">Analytics Project</div>
+          <p class="project-description">Excel dashboard analyzing 3 years of sales data. Interactive visuals + insights for decision-makers.</p>
+          <div class="project-tech"><strong>Tools:</strong> Excel, Pivot Tables, PowerPivot, Visualization</div>
+          <a href="https://github.com/khushimalik3122/coffee-sales-dashboard-" class="project-link" target="_blank">View Project →</a>
+        </div>
+        <div class="project-card animate-on-scroll">
+          <h3 class="project-title">Finance & Supply Chain Analytics</h3>
+          <div class="project-duration">SQL Project</div>
+          <p class="project-description">Analyzed sales/customer data with MySQL for AtliQ Hardwares. Delivered insights for revenue strategy.</p>
+          <div class="project-tech"><strong>Skills:</strong> SQL, Data Reporting, Analysis</div>
+          <a href="https://github.com/khushimalik3122/sql_project_finance_and_supply_chain_analytics" class="project-link" target="_blank">View Project →</a>
+        </div>
+        <div class="project-card animate-on-scroll">
+          <h3 class="project-title">AtliQ Sales Reports Project</h3>
+          <div class="project-duration">Power BI Project</div>
+          <p class="project-description">Created advanced P&L dashboards using Power BI. Benchmarked performance across markets & fiscal years.</p>
+          <div class="project-tech"><strong>Skills:</strong> DAX, Power Query, Power BI</div>
+          <a href="https://github.com/khushimalik3122/excel-AtliQ-Reports" class="project-link" target="_blank">View Project →</a>
+        </div>
+      </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="section">
+    <div class="section-container">
+      <h2 class="section-title">Experience</h2>
+      <div class="experience-timeline">
+        <div class="experience-item animate-on-scroll">
+          <div class="experience-card">
+            <h3 class="experience-title">AI Researcher</h3>
+            <div class="experience-company">@ Coding Jr</div>
+            <div class="experience-duration">May 2025 – Present | Remote</div>
+            <div class="experience-description">
+              <p>• Focus: LLMs, NLP, Python models</p>
+              <p>• Built custom AI text generation workflows</p>
+              <p>• Cross-functional AI solution deployment</p>
+          </div>
+            </div>
+            </div>
+        <div class="experience-item animate-on-scroll">
+          <div class="experience-card">
+            <h3 class="experience-title">Freelance Data Scientist</h3>
+            <div class="experience-company">@ Zindi Africa</div>
+            <div class="experience-duration">Apr 2025 – Present | Remote (South Africa)</div>
+            <div class="experience-description">
+              <p>• Participated in competitive AI challenges in agriculture and healthcare domains</p>
+              <p>• Top 10 in Amini GeoFM (crop classification from satellite imagery)</p>
+              <p>• Handled data preprocessing, model development, and leaderboard optimization</p>
+              <p>• Skills: Data Science, Geospatial AI, Clinical Reasoning, ML Model Optimization</p>
+            </div>
+          </div>
+      </div>
+        <div class="experience-item animate-on-scroll">
+          <div class="experience-card">
+            <h3 class="experience-title">Report Compilation Committee Co-Head</h3>
+            <div class="experience-company">@ DAKSHI.108</div>
+            <div class="experience-duration">Jul 2025 – Present | Hybrid (New Delhi)</div>
+            <div class="experience-description">
+              <p>• Led report compilation and documentation efforts for flagship events and campaigns</p>
+              <p>• Coordinated team efforts to ensure accuracy, formatting consistency, and timely delivery</p>
+              <p>• Streamlined workflow using version control and collaborative tools (Google Sheet, Notion, Python)</p>
+    </div>
+  </div>
+  </div>
+        <div class="experience-item animate-on-scroll">
+          <div class="experience-card">
+            <h3 class="experience-title">Research Coordinator</h3>
+            <div class="experience-company">@ Dakshi Movement</div>
+            <div class="experience-duration">Nov 2024 – Jul 2025 | On-site (India)</div>
+            <div class="experience-description">
+              <p>• Conducted in-depth research and discourse on Vedic texts, culture, and philosophy</p>
+              <p>• Participated in weekly debates, peer discussions, and research reviews on assigned topics</p>
+              <p>• Attended national-level seminars and workshops related to Vedic sciences and traditional knowledge</p>
+              <p>• Collaborated with scholars and mentors to co-create documentation and presentations</p>
+              <p>• Skills: Vedic Research, Analytical Thinking, Public Speaking, Content Writing, Critical Reasoning</p>
+          </div>
+            </div>
+            </div>
+        <div class="experience-item animate-on-scroll">
+          <div class="experience-card">
+            <h3 class="experience-title">Data Analyst Intern</h3>
+            <div class="experience-company">@ Unified Mentor</div>
+            <div class="experience-duration">Apr 2025 – May 2025 | Remote</div>
+            <div class="experience-description">
+              <p>• Extracted job market trends from 2,000+ listings</p>
+              <p>• Built salary prediction model with Random Forest</p>
+              <p>• Delivered insights through visual storytelling</p>
+            </div>
+          </div>
+        </div>
+        <div class="experience-item animate-on-scroll">
+          <div class="experience-card">
+            <h3 class="experience-title">NCC Cadet</h3>
+            <div class="experience-company">@ National Cadet Corps - India</div>
+            <div class="experience-duration">Oct 2024 – Present | On-site (New Delhi)</div>
+            <div class="experience-description">
+              <p>• Trained in leadership, operational strategy, and national service values</p>
+              <p>• Participated in defense drills, physical fitness modules, and social service camps</p>
+              <p>• Skills: Discipline, Planning, Crisis Response, Team Management</p>
+      </div>
+          </div>
+            </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Education Section -->
+  <section id="education" class="section">
+    <div class="section-container">
+      <h2 class="section-title">Education</h2>
+      <div class="education-card animate-on-scroll">
+        <h3 class="education-degree">B.Sc. Mathematics</h3>
+        <div class="education-school">Kirori Mal College, University of Delhi</div>
+        <div class="experience-duration">Aug 2023 – May 2027</div>
+        <div class="education-gpa">CGPA: 8.27</div>
+    </div>
+  </div>
+</section>
+
+  <!-- Certifications Section -->
+  <section id="certifications" class="section">
+    <div class="section-container">
+      <h2 class="section-title">Certifications</h2>
+      <div class="certifications-grid">
+        <div class="certification-card animate-on-scroll">
+          <a href="https://drive.google.com/file/d/1t-JYL9sV4xWazLImPAWQNxB64u5ULOg7/view?usp=sharing" target="_blank">
+            <img src="excel_cert.png" alt="Excel certificate" class="certification-image">
+          </a>
+          <h3 class="certification-title">Excel for Data Analysis</h3>
+          <div class="certification-issuer">By Codebasics</div>
+        </div>
+        <div class="certification-card animate-on-scroll">
+          <a href="https://drive.google.com/file/d/12yBP73lgdj5Fg8_qndnwNGo_-qHb7dik/view?usp=sharing" target="_blank">
+            <img src="sqlcert.png" alt="SQL certificate" class="certification-image">
+          </a>
+          <h3 class="certification-title">SQL Fundamentals</h3>
+          <div class="certification-issuer">By Codebasics</div>
+        </div>
+        <div class="certification-card animate-on-scroll">
+          <a href="https://drive.google.com/file/d/1dGG5kFTaqcSLqLbWq3PbtitAUBMti9-e/view?usp=sharing" target="_blank">
+            <img src="pythoncert.png" alt="Python certificate" class="certification-image">
+          </a>
+          <h3 class="certification-title">Python Programming</h3>
+          <div class="certification-issuer">By Codebasics</div>
+        </div>
+        <div class="certification-card animate-on-scroll">
+          <a href="https://drive.google.com/file/d/1phMEyI_sE3OgZwV7_Vw36xfyB0rJPrZA/view?usp=sharing" target="_blank">
+            <img src="appreciationcert.png" alt="Appreciation certificate" class="certification-image">
+          </a>
+          <h3 class="certification-title">Certificate of Appreciation</h3>
+          <div class="certification-issuer">By Codebasics</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research Work Section -->
+  <section id="researchwork" class="section">
+    <div class="section-container">
+      <h2 class="section-title">Research Work</h2>
+      
+      <!-- Filter Buttons -->
+      <div class="filter-container animate-on-scroll">
+        <button class="filter-btn active" data-filter="all">All Research</button>
+        <button class="filter-btn" data-filter="ai">AI/ML</button>
+        <button class="filter-btn" data-filter="cultural">Cultural</button>
+        <button class="filter-btn" data-filter="geospatial">Geospatial</button>
+      </div>
+
+      <div class="research-grid">
+        <div class="research-card animate-on-scroll" data-category="ai">
+          <div class="research-icon"></div>
+          <h3 class="research-title">LLM Research & Publications</h3>
+          <div class="research-duration">Coming Soon</div>
+          <p class="research-description">Comprehensive research on Large Language Models in software development, including fine-tuning strategies, RAG implementations, and coding copilot architectures. Multiple published research papers and technical specifications.</p>
+          <div class="research-topics">
+            <span class="topic-tag">Large Language Models</span>
+            <span class="topic-tag">Fine-tuning</span>
+            <span class="topic-tag">RAG Systems</span>
+            <span class="topic-tag">Code Generation</span>
+          </div>
+          <div class="research-outcomes">
+            <p><strong>Key Outcomes:</strong></p>
+            <ul>
+              <li>Published research papers on LLMs in software development</li>
+              <li>Developed fine-tuning strategies for large codebases</li>
+              <li>Created technical specifications for coding copilot systems</li>
+              <li>Implemented RAG architectures for code assistance</li>
+            </ul>
+          </div>
+          <button class="expand-btn" onclick="toggleResearchDetails(this)">Show More Details</button>
+          <div class="research-details" style="display: none;">
+            <h4>Research Publications:</h4>
+            <p>• Coding Copilot System Architecture and Technical Specifications</p>
+            <p>• Fine-Tuning Language Models & Managing Large Codebases</p>
+            <p>• Large Language Models in Software Development - Mechanics and Limitations</p>
+            <p>• Text to Prompt Coding Research and Implementation</p>
+            <p>• RAG Research for Code Generation and Assistance</p>
+            <a href="https://github.com/khushimalik3122/llm_research" class="project-link" target="_blank">View Research Repository →</a>
+          </div>
+        </div>
+        <div class="research-card animate-on-scroll" data-category="cultural">
+          <div class="research-icon"></div>
+          <h3 class="research-title">Vedic Research & Cultural Analysis</h3>
+          <div class="research-duration">Coming Soon</div>
+          <p class="research-description">Conducted comprehensive research on Vedic texts, cultural heritage, and philosophical traditions. Analyzed ancient wisdom through modern analytical frameworks.</p>
+          <div class="research-topics">
+            <span class="topic-tag">Vedic Literature</span>
+            <span class="topic-tag">Cultural Heritage</span>
+            <span class="topic-tag">Philosophical Analysis</span>
+          </div>
+          <div class="research-outcomes">
+            <p><strong>Key Outcomes:</strong></p>
+            <ul>
+              <li>Published research papers on Vedic knowledge systems</li>
+              <li>Presented findings at national-level seminars</li>
+              <li>Collaborated with scholars and mentors</li>
+              <li>Developed analytical frameworks for cultural research</li>
+            </ul>
+          </div>
+          <button class="expand-btn" onclick="toggleResearchDetails(this)">Show More Details</button>
+          <div class="research-details" style="display: none;">
+            <h4>Detailed Research Findings:</h4>
+            <p>• Conducted comparative analysis of Vedic texts with modern scientific principles</p>
+            <p>• Developed frameworks for understanding ancient knowledge systems</p>
+            <p>• Created documentation for cultural preservation initiatives</p>
+            <p>• Presented research at 3+ national conferences</p>
+          </div>
+        </div>
+        <div class="research-card animate-on-scroll" data-category="ai">
+          <div class="research-icon"></div>
+          <h3 class="research-title">AI & Machine Learning Research</h3>
+          <div class="research-duration">Coming Soon</div>
+          <p class="research-description">Leading research initiatives in AI/ML, focusing on LLMs, NLP, and advanced machine learning models for real-world applications.</p>
+          <div class="research-topics">
+            <span class="topic-tag">Large Language Models</span>
+            <span class="topic-tag">Natural Language Processing</span>
+            <span class="topic-tag">AI Ethics</span>
+          </div>
+          <div class="research-outcomes">
+            <p><strong>Key Outcomes:</strong></p>
+            <ul>
+              <li>Developed custom AI text generation workflows</li>
+              <li>Implemented cross-functional AI solutions</li>
+              <li>Published research on AI applications</li>
+              <li>Contributed to open-source AI projects</li>
+            </ul>
+          </div>
+          <button class="expand-btn" onclick="toggleResearchDetails(this)">Show More Details</button>
+          <div class="research-details" style="display: none;">
+            <h4>Technical Research Details:</h4>
+            <p>• Built custom LLM pipelines for text generation and analysis</p>
+            <p>• Implemented RAG systems for context-aware AI responses</p>
+            <p>• Developed ethical AI frameworks for responsible deployment</p>
+            <p>• Created VS Code extensions with AI integration</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Articles Section -->
+  <section id="articles" class="section">
+    <div class="section-container">
+      <h2 class="section-title">Articles & Publications</h2>
+      
+      <!-- Filter Buttons -->
+      <div class="filter-container animate-on-scroll">
+        <button class="filter-btn active" data-filter="all">All Articles</button>
+        <button class="filter-btn" data-filter="ai">AI/ML</button>
+        <button class="filter-btn" data-filter="healthcare">Healthcare</button>
+        <button class="filter-btn" data-filter="agriculture">Agriculture</button>
+        <button class="filter-btn" data-filter="cultural">Cultural</button>
+      </div>
+
+      <div class="articles-grid">
+        <div class="article-card animate-on-scroll" data-category="ai">
+          <div class="article-meta">
+            <span class="article-platform">Medium</span>
+            <span class="article-date">Jun 28, 2025</span>
+          </div>
+          <h3 class="article-title">Building a RAG Pipeline for a Coding Copilot</h3>
+          <p class="article-excerpt">A comprehensive guide to building context-aware code assistants using Retrieval-Augmented Generation (RAG) architecture, deployed on Google Colab and tailored for Flask codebase.</p>
+          <div class="article-topics">
+            <span class="topic-tag">RAG Pipeline</span>
+            <span class="topic-tag">AI/ML</span>
+            <span class="topic-tag">Coding Assistant</span>
+          </div>
+          <button class="expand-btn" onclick="toggleArticleDetails(this)">Read Full Article</button>
+          <div class="article-details" style="display: none;">
+            <h4>Article Summary:</h4>
+            <p>This technical article covers building a robust RAG pipeline for AI-powered code assistance:</p>
+            <ul>
+              <li>Data ingestion and preprocessing from Flask codebase</li>
+              <li>Code embeddings using BAAI/bge-code-v1 model</li>
+              <li>Vector storage and retrieval with ChromaDB</li>
+              <li>Power prompting and LLM generation techniques</li>
+              <li>Complete Google Colab implementation</li>
+            </ul>
+            <a href="https://khushimalik511263.medium.com/building-a-rag-pipeline-for-a-coding-copilot-df3e6fce257e" class="article-link" target="_blank">Read on Medium →</a>
+          </div>
+        </div>
+        <div class="article-card animate-on-scroll" data-category="healthcare">
+          <div class="article-meta">
+            <span class="article-platform">Medium</span>
+            <span class="article-date">Coming Soon</span>
+          </div>
+          <h3 class="article-title">The Future of AI in Healthcare</h3>
+          <p class="article-excerpt">Exploring the transformative potential of artificial intelligence in modern healthcare systems, from diagnosis to treatment optimization.</p>
+          <div class="article-topics">
+            <span class="topic-tag">Healthcare AI</span>
+            <span class="topic-tag">Medical Technology</span>
+            <span class="topic-tag">Future of Medicine</span>
+          </div>
+          <button class="expand-btn" onclick="toggleArticleDetails(this)">Coming Soon</button>
+          <div class="article-details" style="display: none;">
+            <h4>Article Preview:</h4>
+            <p>This comprehensive article will explore how AI is revolutionizing healthcare through:</p>
+            <ul>
+              <li>Advanced diagnostic algorithms</li>
+              <li>Personalized treatment plans</li>
+              <li>Predictive analytics for patient outcomes</li>
+              <li>Ethical considerations in medical AI</li>
+            </ul>
+            <p><em>Article coming soon...</em></p>
+          </div>
+        </div>
+        <div class="article-card animate-on-scroll" data-category="agriculture">
+          <div class="article-meta">
+            <span class="article-platform">Medium</span>
+            <span class="article-date">Coming Soon</span>
+          </div>
+          <h3 class="article-title">Data Science in Agriculture: A Complete Guide</h3>
+          <p class="article-excerpt">Comprehensive guide on applying data science techniques to agricultural challenges, including crop prediction and yield optimization.</p>
+          <div class="article-topics">
+            <span class="topic-tag">Agricultural AI</span>
+            <span class="topic-tag">Data Science</span>
+            <span class="topic-tag">Sustainability</span>
+          </div>
+          <button class="expand-btn" onclick="toggleArticleDetails(this)">Coming Soon</button>
+          <div class="article-details" style="display: none;">
+            <h4>Article Preview:</h4>
+            <p>This guide will cover practical applications of data science in agriculture:</p>
+            <ul>
+              <li>Satellite imagery analysis for crop monitoring</li>
+              <li>Machine learning for yield prediction</li>
+              <li>IoT sensors for precision farming</li>
+              <li>Sustainable farming practices through AI</li>
+            </ul>
+            <p><em>Article coming soon...</em></p>
+          </div>
+        </div>
+        <div class="article-card animate-on-scroll" data-category="cultural">
+          <div class="article-meta">
+            <span class="article-platform">Medium</span>
+            <span class="article-date">Coming Soon</span>
+          </div>
+          <h3 class="article-title">Vedic Wisdom in Modern Analytics</h3>
+          <p class="article-excerpt">Bridging ancient Vedic knowledge systems with contemporary data analytics and research methodologies.</p>
+          <div class="article-topics">
+            <span class="topic-tag">Vedic Knowledge</span>
+            <span class="topic-tag">Cultural Analytics</span>
+            <span class="topic-tag">Research Methods</span>
+          </div>
+          <button class="expand-btn" onclick="toggleArticleDetails(this)">Coming Soon</button>
+          <div class="article-details" style="display: none;">
+            <h4>Article Preview:</h4>
+            <p>This article will explore the intersection of ancient wisdom and modern analytics:</p>
+            <ul>
+              <li>Mathematical principles in Vedic texts</li>
+              <li>Pattern recognition in ancient knowledge systems</li>
+              <li>Modern analytical frameworks for cultural research</li>
+              <li>Preserving traditional knowledge through technology</li>
+            </ul>
+            <p><em>Article coming soon...</em></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="section-container">
+      <h2 class="section-title">Contact Me</h2>
+      <div class="contact-container">
+        <div class="contact-info animate-on-scroll">
+          <h3>Let's Connect!</h3>
+          <p>Whether you want to discuss a project, ask a question, or just say hi, I'm always happy to chat.</p>
+          <div class="contact-details">
+            <div class="contact-detail">
+              <strong>Email:</strong> khushimalik511263@gmail.com
+  </div>
+          </div>
+        <div class="contact-socials">
+            <a href="mailto:khushimalik511263@gmail.com" class="social-link" title="Email">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Email">
+          </a>
+            <a href="https://github.com/khushimalik3122" class="social-link" title="GitHub">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub">
+          </a>
+            <a href="https://www.linkedin.com/in/khushi-malik-6b972b280/" class="social-link" title="LinkedIn">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn">
+          </a>
+            <a href="https://khushimalik511263.medium.com/" class="social-link" title="Medium">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/medium.svg" alt="Medium">
+          </a>
+            <a href="https://huggingface.co/khushiMalik3122" class="social-link" title="Hugging Face">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/huggingface.svg" alt="Hugging Face">
+          </a>
+        </div>
+      </div>
+        <form class="contact-form animate-on-scroll" action="https://formspree.io/f/mpwradpn" method="POST">
+          <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" name="name" id="name" placeholder="Enter your name" required>
+          </div>
+          <div class="form-group">
+        <label for="email">Your Email</label>
+        <input type="email" name="_replyto" id="email" placeholder="Enter your email" required>
+          </div>
+          <div class="form-group">
+        <label for="message">Message</label>
+            <textarea name="message" id="message" placeholder="Type your message here..." required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+  <!-- Resume Section -->
+  <section id="resume" class="section">
+    <div class="section-container">
+      <h2 class="section-title">Resume</h2>
+      <div class="resume-card animate-on-scroll">
+        <h3 class="resume-title">Download My Resume</h3>
+        <p class="resume-description">
+        Download or view my latest resume as a PDF.<br>
+          Explore my experience, skills, certifications, and more!
+        </p>
+        <a href="KHUSHI MALIK RESUME.pdf" class="resume-btn" download target="_blank">
+          📄 Download Resume
+      </a>
+    </div>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p class="footer-text">
+        Made with <span class="footer-heart">❤️</span> by <strong>Khushi Malik</strong> &copy; 2025
+      </p>
+  </div>
+</footer>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all elements with animate-on-scroll class
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Filter functionality for Research and Articles
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const researchCards = document.querySelectorAll('.research-card');
+    const articleCards = document.querySelectorAll('.article-card');
+
+    function filterItems(category) {
+      researchCards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      articleCards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        filterItems(button.dataset.filter);
+      });
+    });
+
+    // Expand/Collapse functionality for Research and Articles
+    function toggleResearchDetails(button) {
+      const details = button.nextElementSibling;
+      if (details.style.display === 'none' || details.style.display === '') {
+        details.style.display = 'block';
+        button.textContent = 'Show Less Details';
+      } else {
+        details.style.display = 'none';
+        button.textContent = 'Show More Details';
+      }
+    }
+
+    function toggleArticleDetails(button) {
+      const details = button.nextElementSibling;
+      if (details.style.display === 'none' || details.style.display === '') {
+        details.style.display = 'block';
+        button.textContent = 'Read Less';
+      } else {
+        details.style.display = 'none';
+        button.textContent = 'Read Full Article';
+      }
+    }
+  </script>
+</body>
+</html>
